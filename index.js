@@ -1,6 +1,10 @@
 const express = require('express');
-
+const bodyParser = require('body-parser')
 const app = express();
+
+// middleware
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({ extended: false }));
 
 const blogs = [
   {
@@ -31,7 +35,7 @@ app.post('/blogs/new', function(req, res){
     res.json({id});
   }else{
     res.status(400);
-    res.send('Invalid Blog. Eacgh blog must have a title and a text field');
+    res.send('Invalid Blog. Each blog must have a title and a text field');
   }
 })
 
